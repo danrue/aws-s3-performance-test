@@ -15,5 +15,6 @@ if [ ! -d large ]; then
     dd if=/dev/urandom of=large/file001.bin bs=1M count=1024
 fi
 
-aws s3 sync small s3://the-test-is-now/
-aws s3 sync large s3://the-test-is-now/
+aws s3 sync small/ s3://the-test-is-now/small/
+aws s3 sync large/ s3://the-test-is-now/large/
+touch .populate
