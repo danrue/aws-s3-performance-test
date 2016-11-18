@@ -1,7 +1,4 @@
-small: large
-	sh populate.sh
-
-large:
+populate:
 	sh populate.sh
 
 clean:
