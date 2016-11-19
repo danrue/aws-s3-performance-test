@@ -18,11 +18,10 @@ else
     echo "Usage: $0 (small|large)"
 fi
 
-aws s3 rm --recursive --quiet s3://the-test-is-now/${TEST_TYPE}/
 rm -rf ${TEST_TYPE}.log
 for n in $(seq 1 10 ); do
+    aws s3 rm --recursive --quiet s3://the-test-is-now/${TEST_TYPE}/
     echo "$n start"
     /usr/bin/time --format="%e" aws s3 sync --quiet ${WORKING_DIR}/ s3://the-test-is-now/${TEST_TYPE}/ 2>> ${LOG}
     echo "$n complete"
-    aws s3 rm --recursive --quiet s3://the-test-is-now/${TEST_TYPE}/
 done
