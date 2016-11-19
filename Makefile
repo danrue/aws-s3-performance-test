@@ -1,19 +1,22 @@
-all: small.log large.log
+# Writes first, so reads have something to read.
+all: small-write.log large-write.log small-read.log large-read.log
 
-small.log: .populate
-	sh test.sh small
+small-write.log:
+	sh write.sh small
 
-large.log: .populate
-	sh test.sh large
+large-write.log:
+	sh write.sh large
 
-.populate: .prep
-	sh populate.sh
+small-read.log:
+	sh read.sh small
 
+large-read.log:
+	sh read.sh large
+
+# Install Ubuntu required packages
 .prep:
 	sh prep
 
+# Reset for a new test
 reset:
 	rm -rf *.log
-
-clean_all:
-	rm -rf small large *.log .populate
