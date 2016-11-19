@@ -11,5 +11,9 @@ large.log: .populate
 
 .prep:
 	sh prep
-clean:
+
+reset:
+	rm -rf *.log
+
+clean_all:
 	rm -rf small large *.log .populate
